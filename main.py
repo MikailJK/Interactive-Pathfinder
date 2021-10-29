@@ -1,16 +1,60 @@
-# This is a sample Python script.
+import pygame
+import node
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+window_width = 1000
+window_height = 1000
+nodes = []
+
+def main():
+    pygame.init()
+    win = pygame.display.set_mode((window_width, window_height))
+    pygame.display.set_caption("Interactive Pathfinder")
+
+    win.fill((255, 255, 255))
+
+    #creates nodes 
+    for i in range(50):
+        for j in range(50):
+            n = node.node(20 * i, 20 * j, 20, 20, i + j)
+            nodes.append(n)
+            n.draw(win)
+
+    drag = False
+
+    run = True
+    while run:
+
+        for e in pygame.event.get():
+            pos = pygame.mouse.get_pos()
+
+            if e.type == pygame.QUIT:
+                run = False
+
+            if e.type == pygame.MOUSEBUTTONDOWN:
+                for i in range(len(nodes)):
+                    if nodes[i].isOver(pos):
+                        nodes[i].clicked(win)
+                drag = True
+
+            if e.type == pygame.MOUSEBUTTONUP:
+                drag = False
+
+            if e.type == pygame.MOUSEMOTION and drag:
+                for i in range(len(nodes)):
+                    if nodes[i].isOver(pos):
+                        nodes[i].clicked(win)
+                drag = True
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+        for i in range(len(nodes)):
+            nodes[i].draw(win)
+
+        pygame.display.update()
 
 
-# Press the green button in the gutter to run the script.
+
+
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()
