@@ -3,8 +3,8 @@ import node
 from math import floor
 import search
 
-window_width = 1000
-window_height = 1000
+window_width = 800
+window_height = 800
 node_size = 20
 number_of_nodes_x = floor(window_width / node_size)
 number_of_nodes_y = floor(window_height / node_size)
@@ -49,7 +49,7 @@ def main():
                 drag = False
 
             if e.type == pygame.KEYDOWN:
-                s = search.search(nodes, 20, 20)
+                s = search.search(nodes, 0, 0)
                 s.astarSearch(target_node)
 
 

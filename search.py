@@ -45,7 +45,7 @@ class search(object):
             for n in child_list:
                 if n.goal:
                     return n
-                # TODO implement tile specific g values
+
                 n.g += q.g #+ math.sqrt(abs(self.x - q.x) ** 2 + abs(self.y - q.y) ** 2)
                 #n.g = math.sqrt(abs(self.x ) ** 2 + abs(self.y ) ** 2)
                 n.h = math.sqrt(abs(self.x - target_node.x) ** 2 + abs(self.y - target_node.y) ** 2)
@@ -65,8 +65,8 @@ class search(object):
                 open_nodes.append(n)
                 n.visited()
 
-            q.closed = True
             closed_nodes.append(q)
+            q.close()
 
     def getChildren(self, q):
 
@@ -96,28 +96,28 @@ class search(object):
                 n.parent = q
                 n.g = 1
                 children.append(n)
-        # if self.x > 0 and self.y > 0:
-        #     n = self.map[self.x - 1][self.y - 1]
-        #     if n.valid():
-        #         n.parent = q
-        #         n.g = 1.4
-        #         children.append(n)
-        # if self.x > 0 and self.y < len(self.map) - 1:
-        #     n = self.map[self.x - 1][self.y + 1]
-        #     if n.valid():
-        #         n.parent = q
-        #         n.g = 1.4
-        #         children.append(n)
-        # if self.x < len(self.map[0]) - 1 and self.y > 0:
-        #     n = self.map[self.x + 1][self.y - 1]
-        #     if n.valid():
-        #         n.parent = q
-        #         n.g = 1.4
-        #         children.append(n)
-        # if self.x < len(self.map[0]) - 1 and self.y < len(self.map) - 1:
-        #     n = self.map[self.x + 1][self.y + 1]
-        #     if n.valid():
-        #         n.parent = q
-        #         n.g = 1.4
-        #         children.append(n)
+        if self.x > 0 and self.y > 0:
+            n = self.map[self.x - 1][self.y - 1]
+            if n.valid():
+                n.parent = q
+                n.g = 1.4
+                children.append(n)
+        if self.x > 0 and self.y < len(self.map) - 1:
+            n = self.map[self.x - 1][self.y + 1]
+            if n.valid():
+                n.parent = q
+                n.g = 1.4
+                children.append(n)
+        if self.x < len(self.map[0]) - 1 and self.y > 0:
+            n = self.map[self.x + 1][self.y - 1]
+            if n.valid():
+                n.parent = q
+                n.g = 1.4
+                children.append(n)
+        if self.x < len(self.map[0]) - 1 and self.y < len(self.map) - 1:
+            n = self.map[self.x + 1][self.y + 1]
+            if n.valid():
+                n.parent = q
+                n.g = 1.4
+                children.append(n)
         return children

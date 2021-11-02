@@ -1,7 +1,8 @@
 # node class
 import pygame
 
-seached_color = (32, 191, 85)
+open_color = (255, 200, 0 )
+closed_color = (52, 191, 105)
 path_color = (239, 98, 158)
 end_color = (230, 57, 70)
 start_color = (1, 186, 239)
@@ -53,7 +54,7 @@ class node(object):
         return return_val
 
     def visited(self):
-        self.fill_color = seached_color
+        self.fill_color = open_color
         self.draw()
         pygame.display.update()
 
@@ -74,7 +75,11 @@ class node(object):
             return False
         return True
 
-
+    def close(self):
+        self.closed = True
+        self.fill_color = closed_color
+        self.draw()
+        pygame.display.update()
 
 
     def __repr__(self):
