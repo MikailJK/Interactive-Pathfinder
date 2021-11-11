@@ -38,20 +38,18 @@ class node(object):
         pygame.draw.rect(self.win, line_color, self.rect, self.line_width)
 
 
-    def clicked(self, win, button):
-        return_val = 0
-        if button[0]:
+    def clicked(self, win, selector):
+        if selector == 0:
             self.fill_color = wall_color
             self.wall = True
-        elif button[1]:
+        elif selector == 1:
             self.fill_color = start_color
-        elif button[2]:
+        elif selector == 2:
             self.fill_color = end_color
             self.goal = True
-            return_val = self
         #self.line_width = 0
         self.draw()
-        return return_val
+        return self
 
     def visited(self):
         self.fill_color = open_color
@@ -79,6 +77,13 @@ class node(object):
         self.closed = True
         self.fill_color = closed_color
         self.draw()
+        pygame.display.update()
+
+    def reset(self):
+        target = False
+        self.fill_color = background_color
+        self.draw()
+        self.goal = False;
         pygame.display.update()
 
 

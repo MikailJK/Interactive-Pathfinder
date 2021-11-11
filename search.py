@@ -78,7 +78,7 @@ class search(object):
                 n.parent = q
                 n.g = 1
                 children.append(n)
-        if self.x < len(self.map[0]) - 1:
+        if self.x < len(self.map) - 1:
             n = self.map[self.x + 1][self.y]
             if n.valid():
                 n.parent = q
@@ -90,34 +90,34 @@ class search(object):
                 n.parent = q
                 n.g = 1
                 children.append(n)
-        if self.y < len(self.map) - 1:
+        if self.y < len(self.map[0]) - 1:
             n = self.map[self.x][self.y + 1]
             if n.valid():
                 n.parent = q
                 n.g = 1
                 children.append(n)
-        if self.x > 0 and self.y > 0:
-            n = self.map[self.x - 1][self.y - 1]
-            if n.valid():
-                n.parent = q
-                n.g = 1.4
-                children.append(n)
-        if self.x > 0 and self.y < len(self.map) - 1:
-            n = self.map[self.x - 1][self.y + 1]
-            if n.valid():
-                n.parent = q
-                n.g = 1.4
-                children.append(n)
-        if self.x < len(self.map[0]) - 1 and self.y > 0:
-            n = self.map[self.x + 1][self.y - 1]
-            if n.valid():
-                n.parent = q
-                n.g = 1.4
-                children.append(n)
-        if self.x < len(self.map[0]) - 1 and self.y < len(self.map) - 1:
-            n = self.map[self.x + 1][self.y + 1]
-            if n.valid():
-                n.parent = q
-                n.g = 1.4
-                children.append(n)
+        # if self.x > 0 and self.y > 0:
+        #     n = self.map[self.x - 1][self.y - 1]
+        #     if n.valid():
+        #         n.parent = q
+        #         n.g = 1.4
+        #         children.append(n)
+        # if self.x > 0 and self.y < len(self.map) - 1:
+        #     n = self.map[self.x - 1][self.y + 1]
+        #     if n.valid():
+        #         n.parent = q
+        #         n.g = 1.4
+        #         children.append(n)
+        # if self.x < len(self.map[0]) - 1 and self.y > 0:
+        #     n = self.map[self.x + 1][self.y - 1]
+        #     if n.valid():
+        #         n.parent = q
+        #         n.g = 1.4
+        #         children.append(n)
+        # if self.x < len(self.map[0]) - 1 and self.y < len(self.map) - 1:
+        #     n = self.map[self.x + 1][self.y + 1]
+        #     if n.valid():
+        #         n.parent = q
+        #         n.g = 1.4
+        #         children.append(n)
         return children
